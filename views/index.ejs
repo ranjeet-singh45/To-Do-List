@@ -1,112 +1,130 @@
 <%- include('partials/header.ejs'); -%>
-<div class="lists-container">
-  <div class = "head">
-  <div class="box" id="heading">
-    <h1>
-      <%= listTitle1 %>
-    </h1>
-  </div>
- 
-  <div class="box">
-    <% for(let item of listItems1){%>
-      <div class="item">
-        <form action="/delete" method="post">
-          <input type="checkbox" onchange="this.form.submit()" name="deleteItemId1" value="<%= item.id %>">
-        </form>
-
-        <p id="title<%=item.id%>">
-          <%= item.title %>
-        </p>
-
-        <form class="edit" action="/edit" method="post">
-          <input type="hidden" name="updatedItemId1" value="<%= item.id %>">
-          <input id="input<%=item.id%>" type="text" name="updatedItemTitle1" value="<%= item.title %>" autocomplete="off"
-            autofocus="true" hidden="true" />
-          <button id="done<%=item.id%>" class="edit" type="submit" hidden><img class="icon"
-              src="/assets/icons/check-solid.svg" alt="tick image"></button>
-        </form>
-        <button id="edit<%=item.id%>" class="edit" onclick="handler('<%=item.id%>')"><img class="icon"
-            src="/assets/icons/pencil-solid.svg" alt="pencil image"></button>
+   <div class = "container">
+      <div class = "heading">
+        <h1>To-Do List</h1>
       </div>
-      <% } %>
-
-        <form class="item" action="/add" method="post">
-          <input type="text" name="newItem1" placeholder="Add New Item" autocomplete="off"  />
-          <button class="add" type="submit" name="list" value=<%=listTitle1 %> >+</button>
-        </form>
-  </div>
-  </div>
-  <div class = "head">
-    <div class="box" id="heading">
-    <h1>
-      <%= listTitle2 %>
-    </h1>
-  </div>
-  <div class="box">
-    <% for(let item of listItems2){%>
-      <div class="item">
-        <form action="/delete" method="post">
-          <input type="checkbox" onchange="this.form.submit()" name="deleteItemId2" value="<%= item.id %>">
-        </form>
-
-        <p id="title<%=item.id%>">
-          <%= item.title %>
-        </p>
-
-        <form class="edit" action="/edit" method="post">
-          <input type="hidden" name="updatedItemId2" value="<%= item.id %>">
-          <input id="input<%=item.id%>" type="text" name="updatedItemTitle2" value="<%= item.title %>" autocomplete="off"
-            autofocus="true" hidden="true" />
-          <button id="done<%=item.id%>" class="edit" type="submit" hidden><img class="icon"
-              src="/assets/icons/check-solid.svg" alt="tick image"></button>
-        </form>
-        <button id="edit<%=item.id%>" class="edit" onclick="handler('<%=item.id%>')"><img class="icon"
-            src="/assets/icons/pencil-solid.svg" alt="pencil image"></button>
+    </div>
+  <div class="lists-container">
+    <div class="head">
+      <div class="box" id="heading">
+        <h1>
+          <%= listTitle1 %>
+        </h1>
       </div>
-      <% } %>
 
-        <form class="item" action="/add" method="post">
-          <input type="text" name="newItem2" placeholder="Add New Item" autocomplete="off"  />
-          <button class="add" type="submit" name="list" value=<%=listTitle2 %> >+</button>
-        </form>
-  </div>
-  </div>
-  <div class = "head">
-  <div class="box" id="heading">
-    <h1>
-      <%= listTitle3 %>
-    </h1>
-  </div>
-  <div class="box">
-    <% for(let item of listItems3){%>
-      <div class="item">
-        <form action="/delete" method="post">
-          <input type="checkbox" onchange="this.form.submit()" name="deleteItemId3" value="<%= item.id %>">
-        </form>
+      <div class="box">
+        <% listItems1.forEach((item, index)=>{%>
+          <div class="item">
 
-        <p id="title<%=item.id%>">
-          <%= item.title %>
-        </p>
+            <p id="title<%=item.id%>">
+              <%= index + 1 %>. <%= item.title %>
+            </p>
 
-        <form class="edit" action="/edit" method="post">
-          <input type="hidden" name="updatedItemId3" value="<%= item.id %>">
-          <input id="input<%=item.id%>" type="text" name="updatedItemTitle3" value="<%= item.title %>" autocomplete="off"
-            autofocus="true" hidden="true" />
-          <button id="done<%=item.id%>" class="edit" type="submit" hidden><img class="icon"
-              src="/assets/icons/check-solid.svg" alt="tick image"></button>
-        </form>
-        <button id="edit<%=item.id%>" class="edit" onclick="handler('<%=item.id%>')"><img class="icon"
-            src="/assets/icons/pencil-solid.svg" alt="pencil image"></button>
+            <form class="edit" action="/edit" method="post">
+              <input type="hidden" name="updatedItemId1" value="<%= item.id %>">
+              <input id="input<%=item.id%>" type="text" name="updatedItemTitle1" value="<%= item.title %>"autocomplete="off" autofocus="true" hidden="true" />
+              <button id="done<%=item.id%>" class="edit" type="submit" hidden>
+                <img class="icon" src="/assets/icons/check-solid.svg" alt="tick image">
+              </button>
+            </form>
+            <button type="submit" id="edit<%=item.id%>" class="edit" onclick="handler('<%=item.id%>')">
+              <img class="icon" src="/assets/icons/pencil-solid.svg" alt="pencil image">
+            </button>
+            <form action="/delete" method="post" class="delete-form">
+              <input type="hidden" name="deleteItemId1" value="<%= item.id %>">
+              <button class="delete-btn">
+                <img class="icon" src="/assets/icons/trash-solid.svg" alt="delete icon">
+              </button>
+            </form>
+          </div>
+          <% }); %>
+
+            <form class="item" action="/add" method="post">
+              <input type="text" name="newItem1" placeholder="Add New Item" autocomplete="off" />
+              <button class="add" type="submit" name="list" value=<%=listTitle1 %> >+</button>
+            </form>
       </div>
-      <% } %>
+    </div>
+    <div class="head">
+      <div class="box" id="heading">
+        <h1>
+          <%= listTitle2 %>
+        </h1>
+      </div>
+      <div class="box">
+        <% listItems2.forEach((item, index)=>{%>
+          <div class="item">
 
-        <form class="item" action="/add" method="post">
-          <input type="text" name="newItem3" placeholder="Add New Item" autocomplete="off"  />
-          <button class="add" type="submit" name="list" value=<%=listTitle3 %> >+</button>
-        </form>
+            <p id="title<%=item.id%>">
+              <%= index + 1 %>. <%= item.title %>
+            </p>
+
+            <form class="edit" action="/edit" method="post">
+              <input type="hidden" name="updatedItemId2" value="<%= item.id %>">
+              <input id="input<%=item.id%>" type="text" name="updatedItemTitle2" value="<%= item.title %>"
+                autocomplete="off" autofocus="true" hidden="true" />
+              <button id="done<%=item.id%>" class="edit" type="submit" hidden><img class="icon"
+                  src="/assets/icons/check-solid.svg" alt="tick image"></button>
+            </form>
+            <button id="edit<%=item.id%>" class="edit" onclick="handler('<%=item.id%>')"><img class="icon"
+                src="/assets/icons/pencil-solid.svg" alt="pencil image">
+            </button>
+            <form action="/delete" method="post" class="delete-form">
+              <input type="hidden" name="deleteItemId2" value="<%= item.id %>">
+              <button type="submit" class="delete-btn">
+                <img class="icon" src="/assets/icons/trash-solid.svg" alt="delete icon">
+              </button>
+            </form>
+          </div>
+
+          <% }); %>
+
+            <form class="item" action="/add" method="post">
+              <input type="text" name="newItem2" placeholder="Add New Item" autocomplete="off" />
+              <button class="add" type="submit" name="list" value=<%=listTitle2 %> >+</button>
+            </form>
+      </div>
+    </div>
+    <div class="head">
+      <div class="box" id="heading">
+        <h1>
+          <%= listTitle3 %>
+        </h1>
+      </div>
+      <div class="box">
+        <% listItems3.forEach((item, index)=>{%>
+          <div class="item">
+
+            <p id="title<%=item.id%>">
+              <%= index + 1 %>. <%= item.title %>
+            </p>
+
+            <form class="edit" action="/edit" method="post">
+              <input type="hidden" name="updatedItemId3" value="<%= item.id %>">
+              <input id="input<%=item.id%>" type="text" name="updatedItemTitle3" value="<%= item.title %>"
+                autocomplete="off" autofocus="true" hidden="true" />
+              <button id="done<%=item.id%>" class="edit" type="submit" hidden><img class="icon"
+                  src="/assets/icons/check-solid.svg" alt="tick image"></button>
+            </form>
+            <button id="edit<%=item.id%>" class="edit" onclick="handler('<%=item.id%>')"><img class="icon"
+                src="/assets/icons/pencil-solid.svg" alt="pencil image">
+            </button>
+            <form action="/delete" method="post" class="delete-form">
+              <input type="hidden" name="deleteItemId3" value="<%= item.id %>">
+              <button type="submit" class="delete-btn">
+                <img class="icon" src="/assets/icons/trash-solid.svg" alt="delete icon">
+              </button>
+            </form>
+          </div>
+          <% }); %>
+
+            <form class="item" action="/add" method="post">
+              <input type="text" name="newItem3" placeholder="Add New Item" autocomplete="off" />
+              <button class="add" type="submit" name="list" value=<%=listTitle3 %> >+</button>
+            </form>
+      </div>
+    </div>
   </div>
-  </div>
-</div>
 
   <script>
     function handler(id) {
@@ -116,4 +134,5 @@
       document.getElementById("input" + id).removeAttribute("hidden")
     }
   </script>
+
   <%- include('partials/footer.ejs'); -%>
