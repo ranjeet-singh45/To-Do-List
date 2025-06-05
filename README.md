@@ -32,8 +32,9 @@ A full-stack To-Do List application built with **Node.js**, **Express.js**, **EJ
    npm install
    ```
 3. Set up PostgreSQL:
-   create a table called items
-4. Before running the application, create a `.env` file in the root directory and add the following PostgreSQL database configuration:
+   create a table called items/
+   See the queries.sql file for reference.
+5. Before running the application, create a `.env` file in the root directory and add the following PostgreSQL database configuration:
     ```env
    DB_USER="postgres"
    DB_HOST="localhost"
