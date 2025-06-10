@@ -12,6 +12,10 @@ A full-stack To-Do List application built with **Node.js**, **Express.js**, **EJ
 - Persistent storage with PostgreSQL
 - Clean and responsive UI
 
+![image](https://github.com/user-attachments/assets/fc58c515-9dc6-4747-94ef-de8ab5f21bfe)
+  
+  
+
 ## 🛠️ Tech Stack
 
 - **Frontend**: EJS (Embedded JavaScript Templates), CSS
