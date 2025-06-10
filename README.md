@@ -52,6 +52,6 @@ A full-stack To-Do List application built with **Node.js**, **Express.js**, **EJ
    ```
    npmdev run
    ```
-7. Go to: http://localhost:5173/
+7. Go to: http://localhost:3000/
 
 
